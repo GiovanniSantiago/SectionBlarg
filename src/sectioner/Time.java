@@ -76,6 +76,10 @@ public class Time {
 	}
 	
 	public String toString() {
-		return hour+":"+minute;
+		return String.format("%1$02d", hour)+":"+String.format("%1$02d", minute);
+	}
+	
+	public boolean equals(Time other) {
+		return this.hour==other.hour && this.minute == other.minute;
 	}
 }
