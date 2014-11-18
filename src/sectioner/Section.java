@@ -42,13 +42,28 @@ public class Section {
 	public ArrayList<ArrayList<TimeSlot>> findConflicts(Section other) {
 		ArrayList<ArrayList<TimeSlot>> result = new ArrayList<>();
 		for(int i = 0; i < Day.values().length; i++) {
-			result.add(new ArrayList<TimeSlot>());
+			ArrayList<TimeSlot> currentDay = new ArrayList<>();
+			result.add(currentDay);
+			
+			
+			
 		}
 		
 		
 	}
 	
-	public boolean intersectsTimeSlot(Day d, TimeSlot t) {
+	public boolean intersectsTimeSlot(Day day, TimeSlot time) {
+		ArrayList<TimeSlot> slots = dayArrays.get(day.ordinal());
+
+		for(TimeSlot t: slots) {
+			if(time.intersects(t))
+				return true;
+		}
 		
+		return false;
+	}
+	
+	public ArrayList<TimeSlot> getSlots(Day d) {
+		return dayArrays.get(d.ordinal());
 	}
 }
