@@ -25,11 +25,17 @@ public class TimeSlot {
 		this.end = new Time(endHour,endMinute);
 	}
 	
+	/**
+	 * Determines whether this <code>TimeSlot</code> intersects <code>other</code>
+	 * <br>The end points are included in this test
+	 * @param other
+	 * @return
+	 */
 	public boolean intersects(TimeSlot other) {
 		/*
 		 * It does NOT intersect if this object's start is greater than the other's end, or if this object's end is smaller than the other's start. 
 		 * Invert that, and they DO intersect.
 		 */
-		return !((this.start.compareTo(other.end)>1) || (this.end.compareTo(other.start)<1));
+		return !((this.start.compareTo(other.end)>=0) || (this.end.compareTo(other.start)<=0));
 	}
 }
