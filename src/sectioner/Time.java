@@ -10,7 +10,7 @@ import javax.swing.JButton;
  * @author Giovanni Santiago
  *
  */
-public class Time {
+public class Time implements Comparable<Time> {
 	private int hour;
 	private int minute;
 	JButton b;
@@ -28,43 +28,11 @@ public class Time {
 	}
 	
 	/**
-	 * Creates a <code>Time</code> object with the specified hour and minutes, provided in a 12 hour format.
-	 * <code>beforeNoon</code> determines if the time is 'am'.
-	 * <code>hour</code> must be in the interval [0,11]
-	 * <code>minute</code> is the minutes within the hour. It must be in the interval [0,59]
-	 * @param beforeNoon 		whether or not this hour is 'am'
-	 * @param hour				the hour of the instant in time.		(0-11)
-	 * @param minutes			the minutes within the hour				(0-59)
-	 */
-	public Time(boolean beforeNoon, int hour, int minutes) {
-		this.hour = hour+(beforeNoon?0:12);
-		this.minute = minutes;
-	}
-	
-	/**
 	 * Returns the hour of this Time instant in a 24 hour format.
 	 * @return the hour in 24 hour format
 	 */
 	public int getHour() {
 		return hour;
-	}
-	
-	/**
-	 * Returns the hour of this Time instant in a 12 hour format. Information of am or pm is not provided.
-	 * @return
-	 */
-	public int getHour12() {
-		if(hour%12 == 0)
-			return 12;
-		return hour%12;
-	}
-	
-	/**
-	 * Returns whether or not this Time instant is AM in a 12 hour format, or not.
-	 * @return true if this Time is before noon.
-	 */
-	public boolean isAM() {
-		return hour/12 == 0;
 	}
 	
 	/**
@@ -81,5 +49,26 @@ public class Time {
 	
 	public boolean equals(Time other) {
 		return this.hour==other.hour && this.minute == other.minute;
+	}
+
+	@Override
+	public int compareTo(Time o) {
+		if(this.getHour()>o.getHour()) {
+			return 1;
+		}
+		if(this.getHour()<o.getHour()) {
+			return -1;
+		}
+		
+		//Only case left is equal hours
+		if(this.getMinute()>o.getMinute()) {
+			return 1;
+		}
+		if(this.getMinute()<o.getMinute()) {
+			return -1;
+		}
+		
+		//Only case left is equal hours and equal minutes
+		return 0;
 	}
 }
