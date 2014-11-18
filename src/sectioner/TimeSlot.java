@@ -1,7 +1,12 @@
 package sectioner;
 
 
-
+/**
+ * Represents a period of time with a defined start and end.
+ * <br>Intersection tests are sensitive to interval end points, so be wary.
+ * @author Giovanni Santiago
+ *
+ */
 public class TimeSlot {
 	/**
 	 * Start point of the timeslot. Will always be earlier than <code>end</code>.
@@ -27,7 +32,7 @@ public class TimeSlot {
 	
 	/**
 	 * Determines whether this <code>TimeSlot</code> intersects <code>other</code>
-	 * <br>The end points are included in this test
+	 * <br><b>The end points are included in this test</b>
 	 * @param other
 	 * @return
 	 */
